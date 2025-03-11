@@ -2,6 +2,7 @@ import  { reminderDatabase }  from "./reminder";
 
 const remindDB = new reminderDatabase();
 
+//creating reminders
 const id1 = remindDB.createReminder({
     title: 'Reminder',
     description: 'Complete the reminder project',
@@ -33,7 +34,7 @@ console.log(remindDB.getAllReminders());
 
 
 
-
+//updating reminders
 remindDB.updateReminder(id3, {
     title: 'Go for a Sprint',
     description: 'Complete 500m in 2 minutes'
@@ -69,7 +70,6 @@ remindDB.getAllRemindersMarkedAsCompleted();
 remindDB.unmarkReminderAsCompleted([id2, id3]);
 console.log("\nReminders after marking the second and third as incomplete:");
 console.log(remindDB.getAllReminders());
-
 
 //getting all unmarked as completed reminders
 remindDB.getAllRemindersNotMarkedAsCompleted();
