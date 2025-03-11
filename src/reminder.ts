@@ -18,7 +18,7 @@ export class reminderDatabase {
         reminder.id = id;
         reminder.isCompleted = false;
         this.remind.set(id, reminder);
-        console.log(`Reminder created successfully with id: ${id}\n`);
+        console.log(`Reminder created successfully with id: ${id}`);
         return id;
     }
 
@@ -36,7 +36,7 @@ export class reminderDatabase {
             return;
         }
         this.remind.delete(id);
-        console.log('\nReminder removed successfully\n');
+        console.log('Reminder removed successfully');
     }
 
     updateReminder(id: string, reminder: reminder): void{
@@ -47,7 +47,7 @@ export class reminderDatabase {
         const existingReminder = this.remind.get(id);
         const newReminder = { ...existingReminder, ...reminder, id };
         this.remind.set(id, newReminder);
-        console.log('\nReminder updated successfully\n');
+        console.log('Reminder updated successfully');
     }
 
     markReminderAsCompleted(ids: string[] ): void{
@@ -58,13 +58,13 @@ export class reminderDatabase {
             const reminder = this.remind.get(id)!;
             reminder.isCompleted = true;
             this.remind.set(id, reminder);
-            console.log('\nReminder marked as completed\n');
+            console.log('Reminder marked as completed');
         });
     }
 
     getAllRemindersMarkedAsCompleted(): void{
         const completedReminders = Array.from(this.remind.values()).filter(reminder => reminder.isCompleted);
-        console.log('\nCompleted Reminders:\n');
+        console.log('Completed Reminders:\n');
         console.log(completedReminders);
     }
 
@@ -76,7 +76,7 @@ export class reminderDatabase {
             const reminder = this.remind.get(id)!;
             reminder.isCompleted = false;
             this.remind.set(id, reminder);
-            console.log('\nReminder unmarked as completed\n');
+            console.log('Reminder unmarked as completed');
         });
     }
 
