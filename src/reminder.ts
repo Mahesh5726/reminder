@@ -63,7 +63,7 @@ export class reminderDatabase {
         return ids;
     }
 
-    getAllRemindersMarkedAsCompleted(): string[]{
+    getAllRemindersMarkedAsCompleted(): string[] | {} {
         const completedReminders = Array.from(this.remind.values()).filter(reminder => reminder.isCompleted);
         console.log('Completed Reminders:\n');
         console.log(completedReminders);
@@ -83,7 +83,7 @@ export class reminderDatabase {
         return ids;
     }
 
-    getAllRemindersNotMarkedAsCompleted(): string[] {
+    getAllRemindersNotMarkedAsCompleted(): string[] | {}{
         const incompletedReminders = Array.from(this.remind.values()).filter(reminder => !reminder.isCompleted);
         console.log('\nIncompleted Reminders:\n');
         console.log(incompletedReminders);
