@@ -50,7 +50,7 @@ export class reminderDatabase {
         console.log('Reminder updated successfully');
     }
 
-    markReminderAsCompleted(ids: string[] ): void{
+    markReminderAsCompleted(ids: string[] ): string[]{
             ids.forEach(id => {if(!this.exists(id)){
                 console.log("\nReminder not found\n");
                 return;
@@ -60,15 +60,17 @@ export class reminderDatabase {
             this.remind.set(id, reminder);
             console.log('Reminder marked as completed');
         });
+        return ids;
     }
 
-    getAllRemindersMarkedAsCompleted(): void{
+    getAllRemindersMarkedAsCompleted(): string[]{
         const completedReminders = Array.from(this.remind.values()).filter(reminder => reminder.isCompleted);
         console.log('Completed Reminders:\n');
         console.log(completedReminders);
+        return completedReminders.map(reminder => reminder.id!);
     }
 
-    unmarkReminderAsCompleted(ids: string[]): void{
+    unmarkReminderAsCompleted(ids: string[]): string[] {
             ids.forEach(id => {if(!this.exists(id)){
                 console.log("\nReminder not found\n");
                 return;
@@ -78,15 +80,17 @@ export class reminderDatabase {
             this.remind.set(id, reminder);
             console.log('Reminder unmarked as completed');
         });
+        return ids;
     }
 
-    getAllRemindersNotMarkedAsCompleted(): void{
+    getAllRemindersNotMarkedAsCompleted(): string[] {
         const incompletedReminders = Array.from(this.remind.values()).filter(reminder => !reminder.isCompleted);
         console.log('\nIncompleted Reminders:\n');
         console.log(incompletedReminders);
+        return incompletedReminders.map(reminder => reminder.id!);
     }
 
-    getAllRemindersDueByToday(): void {
+    getAllRemindersDueByToday(): string[] {
         const today =  new Date();
         today.setHours(0, 0, 0, 0);
 
@@ -105,5 +109,6 @@ export class reminderDatabase {
         else{
             console.log(remindersDueByToday);
         }
+        return remindersDueByToday.map(reminder => reminder.id!);
     }
 }
