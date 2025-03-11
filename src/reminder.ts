@@ -68,7 +68,7 @@ export class reminderDatabase {
         console.log(completedReminders);
     }
 
-    getAllRemindersNotMarkedAsCompleted(id: string): void{
+    unmarkReminderAsCompleted(id: string): void{
         if(!this.exists(id)){
             console.log("\nReminder not found\n");
             return;
@@ -79,7 +79,7 @@ export class reminderDatabase {
         console.log('\nReminder marked as uncompleted\n');
     }
 
-    getIncompletedReminders(): void{
+    getAllRemindersNotMarkedAsCompleted(): void{
         const incompletedReminders = Array.from(this.remind.values()).filter(reminder => !reminder.isCompleted);
         console.log('\nIncompleted Reminders:\n');
         console.log(incompletedReminders);
