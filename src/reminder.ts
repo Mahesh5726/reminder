@@ -68,15 +68,16 @@ export class reminderDatabase {
         console.log(completedReminders);
     }
 
-    unmarkReminderAsCompleted(id: string): void{
-        if(!this.exists(id)){
-            console.log("\nReminder not found\n");
-            return;
-        }
-        const reminder = this.remind.get(id)!;
-        reminder.isCompleted = false;
-        this.remind.set(id, reminder);
-        console.log('\nReminder marked as uncompleted\n');
+    unmarkReminderAsCompleted(ids: string[]): void{
+            ids.forEach(id => {if(!this.exists(id)){
+                console.log("\nReminder not found\n");
+                return;
+            }
+            const reminder = this.remind.get(id)!;
+            reminder.isCompleted = false;
+            this.remind.set(id, reminder);
+            console.log('\nReminder unmarked as completed\n');
+        });
     }
 
     getAllRemindersNotMarkedAsCompleted(): void{
